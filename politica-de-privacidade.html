@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — Guia de Jogos de Hoje na TV</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:            #0d0d0d;
+    --surface:       #181818;
+    --card:          #1c1c1c;
+    --border:        #2a2a2a;
+    --accent:        #00e5a0;
+    --accent-dim:    rgba(0,229,160,0.08);
+    --accent-border: rgba(0,229,160,0.22);
+    --text:          #ffffff;
+    --text-dim:      #aaaaaa;
+    --text-muted:    #666666;
+    --red:           #ef4444;
+    --yellow:        #f59e0b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-inner {
+    max-width: 960px; margin: 0 auto; padding: 0 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .logo-text { font-size: 16px; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; }
+  .logo-text .guia { color: var(--accent); }
+  .logo-text .rest { color: var(--text); font-weight: 400; }
+  .badge {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: var(--accent);
+    background: var(--accent-dim); border: 1px solid var(--accent-border);
+    padding: 3px 10px; border-radius: 20px; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* LAYOUT */
+  .wrapper {
+    max-width: 960px; margin: 0 auto; padding: 0 20px 80px;
+    display: grid; grid-template-columns: 210px 1fr; gap: 52px; align-items: start;
+  }
+
+  /* SIDEBAR */
+  aside { position: sticky; top: 65px; padding-top: 44px; }
+  .sidebar-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--text-muted); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .nav-list { list-style: none; }
+  .nav-list li { margin-bottom: 1px; }
+  .nav-list a {
+    display: block; padding: 6px 10px; border-radius: 6px;
+    font-size: 12px; color: var(--text-muted); text-decoration: none;
+    transition: all 0.15s; border-left: 2px solid transparent;
+  }
+  .nav-list a:hover { color: var(--text); background: var(--surface); border-left-color: var(--accent); }
+  .info-box {
+    margin-top: 14px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .info-box .lbl {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;
+  }
+  .info-box .val { font-size: 13px; color: var(--text-dim); font-weight: 600; }
+
+  /* LGPD badge na sidebar */
+  .lgpd-badge {
+    margin-top: 14px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.04em;
+  }
+  .lgpd-badge span { display: block; font-size: 9px; color: var(--text-muted); font-weight: 400; margin-top: 2px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* MAIN */
+  main { padding-top: 44px; }
+  .page-eyebrow {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .page-title {
+    font-size: 26px; font-weight: 900; letter-spacing: -0.03em;
+    text-transform: uppercase; margin-bottom: 4px; color: var(--text);
+  }
+  .page-title span { color: var(--accent); }
+  .page-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
+
+  .intro-card {
+    background: var(--accent-dim); border: 1px solid var(--accent-border);
+    border-radius: 10px; padding: 16px 20px; margin-bottom: 44px;
+    font-size: 13.5px; color: var(--text-dim); line-height: 1.7;
+  }
+  .intro-card strong { color: var(--text); }
+
+  /* SECTIONS */
+  .section { margin-bottom: 46px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px;
+    color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border);
+    width: 28px; height: 28px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .section-title { font-size: 15px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.02em; }
+
+  .section p { color: var(--text-dim); font-size: 14px; margin-bottom: 12px; }
+  .section p:last-child { margin-bottom: 0; }
+  .divider { border: none; border-top: 1px solid var(--border); margin-bottom: 46px; }
+
+  /* listas */
+  .terms-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+  .terms-list li {
+    display: flex; gap: 10px; font-size: 13.5px; color: var(--text-dim); line-height: 1.65;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px;
+  }
+  .terms-list li::before { content: '—'; color: var(--accent); font-family: 'JetBrains Mono', monospace; flex-shrink: 0; }
+
+  /* tabela de dados */
+  .data-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+  .data-table th {
+    text-align: left; padding: 10px 14px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--accent); font-weight: 600; text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.08em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .data-table td {
+    padding: 10px 14px; border: 1px solid var(--border);
+    color: var(--text-dim); vertical-align: top; line-height: 1.55;
+  }
+  .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+
+  /* direitos pills */
+  .rights-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px;
+  }
+  .right-pill {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .right-pill .ico { font-size: 18px; flex-shrink: 0; }
+  .right-pill .label { font-size: 12px; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.03em; }
+  .right-pill .desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* alerts */
+  .alert {
+    border-radius: 8px; padding: 14px 16px; font-size: 13.5px; line-height: 1.65;
+    margin: 14px 0; display: flex; gap: 10px; align-items: flex-start;
+  }
+  .alert-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+  .alert-red    { background: rgba(239,68,68,0.07);  border: 1px solid rgba(239,68,68,0.2);  color: #fca5a5; }
+  .alert-yellow { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.2); color: #fcd34d; }
+  .alert-green  { background: var(--accent-dim);     border: 1px solid var(--accent-border);  color: #6ee7c7; }
+
+  /* contact */
+  .contact-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 24px; margin-top: 14px;
+  }
+  .contact-card .title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .contact-card p { font-size: 13px; color: var(--text-muted); }
+  .contact-card a { color: var(--accent); text-decoration: none; }
+  .contact-card a:hover { text-decoration: underline; }
+
+  /* footer */
+  footer {
+    border-top: 1px solid var(--border); padding: 24px 20px;
+    text-align: center; font-size: 12px; color: var(--text-muted);
+  }
+  footer strong { color: var(--text-dim); }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 680px) {
+    .wrapper { grid-template-columns: 1fr; gap: 0; }
+    aside { display: none; }
+    .page-title { font-size: 20px; }
+    .rights-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-dot"></div>
+    <span class="logo-text"><span class="guia">GUIA</span> <span class="rest">DE JOGOS</span></span>
+    <span class="badge">Política de Privacidade</span>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <aside>
+    <p class="sidebar-label">Índice</p>
+    <ul class="nav-list">
+      <li><a href="#intro">1. Introdução</a></li>
+      <li><a href="#controlador">2. Controlador</a></li>
+      <li><a href="#dados">3. Dados Coletados</a></li>
+      <li><a href="#finalidades">4. Finalidades</a></li>
+      <li><a href="#base-legal">5. Base Legal</a></li>
+      <li><a href="#compartilhamento">6. Compartilhamento</a></li>
+      <li><a href="#cookies">7. Cookies</a></li>
+      <li><a href="#retencao">8. Retenção</a></li>
+      <li><a href="#seguranca">9. Segurança</a></li>
+      <li><a href="#direitos">10. Seus Direitos</a></li>
+      <li><a href="#menores">11. Menores</a></li>
+      <li><a href="#terceiros">12. Links Externos</a></li>
+      <li><a href="#alteracoes">13. Alterações</a></li>
+      <li><a href="#contato">14. Contato / DPO</a></li>
+      <li><a href="#ezoic-privacidade">✦ Ezoic</a></li>
+    </ul>
+    <div class="info-box">
+      <p class="lbl">Última atualização</p>
+      <p class="val">Maio de 2025</p>
+    </div>
+    <div class="info-box">
+      <p class="lbl">Site</p>
+      <p class="val" style="font-size:11px;">meuplayeronlinehd.com</p>
+    </div>
+    <div class="lgpd-badge">
+      ⚖️ LGPD Compliant
+      <span>Lei nº 13.709/2018</span>
+    </div>
+  </aside>
+
+  <main>
+    <p class="page-eyebrow">meuplayeronlinehd.com</p>
+    <h1 class="page-title">Política de <span>Privacidade</span></h1>
+    <p class="page-sub">Guia de Jogos de Futebol de Hoje na TV e Streaming</p>
+
+    <div class="intro-card">
+      <strong>Sua privacidade é importante para nós.</strong> Esta Política de Privacidade descreve como o <strong>Guia de Jogos de Hoje na TV</strong> coleta, utiliza, armazena e protege os dados pessoais dos usuários que acessam <strong>meuplayeronlinehd.com</strong>, em conformidade com a <strong>Lei Geral de Proteção de Dados — LGPD (Lei nº 13.709/2018)</strong> e o <strong>Marco Civil da Internet (Lei nº 12.965/2014)</strong>.
+    </div>
+
+    <!-- 1 -->
+    <div class="section" id="intro">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <h2 class="section-title">Introdução</h2>
+      </div>
+      <p>O <strong>Guia de Jogos de Hoje na TV</strong> é um serviço informativo e editorial gratuito que organiza e disponibiliza informações sobre partidas de futebol ao vivo, indicando onde assisti-las na TV e em plataformas de streaming.</p>
+      <p>Ao acessar o Site, o usuário concorda com as práticas descritas nesta Política. Recomendamos a leitura integral antes de utilizar qualquer funcionalidade.</p>
+    </div>
+    <hr class="divider">
+
+    <!-- 2 -->
+    <div class="section" id="controlador">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <h2 class="section-title">Controlador dos Dados</h2>
+      </div>
+      <p>O controlador responsável pelo tratamento dos dados pessoais coletados neste Site é o operador do <strong>Guia de Jogos</strong>, pessoa física ou jurídica responsável por <strong>meuplayeronlinehd.com</strong>.</p>
+      <p>Para exercer seus direitos ou entrar em contato com o Encarregado de Proteção de Dados (DPO), utilize o canal indicado na <a href="#contato" style="color:var(--accent);">Seção 14</a>.</p>
+    </div>
+    <hr class="divider">
+
+    <!-- 3 -->
+    <div class="section" id="dados">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2 class="section-title">Dados Coletados</h2>
+      </div>
+      <p>O Site coleta dados de forma automática durante a navegação e, eventualmente, dados fornecidos voluntariamente pelo usuário.</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Categoria</th>
+            <th>Dados</th>
+            <th>Forma de coleta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Navegação</strong></td>
+            <td>Endereço IP, tipo de dispositivo, sistema operacional, navegador, páginas visitadas, tempo de sessão</td>
+            <td>Automática (servidor / analytics)</td>
+          </tr>
+          <tr>
+            <td><strong>Preferências</strong></td>
+            <td>Filtros de canal selecionados, campeonatos favoritos, configurações de exibição</td>
+            <td>Automática (cookies / localStorage)</td>
+          </tr>
+          <tr>
+            <td><strong>Publicidade</strong></td>
+            <td>Identificadores de anúncios, interações com banners publicitários</td>
+            <td>Automática (redes de anúncios parceiras)</td>
+          </tr>
+          <tr>
+            <td><strong>Contato</strong></td>
+            <td>Nome e e-mail, quando fornecidos voluntariamente pelo usuário via formulário ou e-mail</td>
+            <td>Voluntária</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-green" style="margin-top:16px;">
+        <span class="alert-icon">✅</span>
+        <span>O Site <strong>não coleta</strong> dados sensíveis como CPF, dados bancários, senhas, localização precisa, biometria ou informações de saúde.</span>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <!-- 4 -->
+    <div class="section" id="finalidades">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <h2 class="section-title">Finalidades do Tratamento</h2>
+      </div>
+      <p>Os dados coletados são utilizados exclusivamente para as seguintes finalidades:</p>
+      <ul class="terms-list">
+        <li>Garantir o funcionamento correto do Site e de suas funcionalidades (filtros, busca, atualização da grade)</li>
+        <li>Manter as preferências do usuário entre sessões (canal favorito, filtro ativo)</li>
+        <li>Analisar o desempenho do Site de forma agregada e anonimizada para melhorias contínuas</li>
+        <li>Exibir publicidade relevante por meio de redes parceiras para manutenção do Serviço gratuito</li>
+        <li>Garantir a segurança do Site, prevenir fraudes e abusos (ex.: bloqueio de IPs maliciosos)</li>
+        <li>Responder a solicitações enviadas pelo usuário via canal de contato</li>
+        <li>Cumprir obrigações legais e regulatórias aplicáveis</li>
+      </ul>
+    </div>
+    <hr class="divider">
+
+    <!-- 5 -->
+    <div class="section" id="base-legal">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <h2 class="section-title">Base Legal (LGPD)</h2>
+      </div>
+      <p>Todo tratamento de dados realizado pelo Site possui uma base legal prevista na LGPD (art. 7º e art. 11). As bases utilizadas são:</p>
+      <ul class="terms-list">
+        <li><strong>Legítimo interesse (art. 7º, IX):</strong> para dados de navegação e segurança, análise de desempenho e melhoria do Serviço</li>
+        <li><strong>Consentimento (art. 7º, I):</strong> para cookies não essenciais e publicidade personalizada — coletado via banner de cookies</li>
+        <li><strong>Execução de contrato ou procedimentos preliminares (art. 7º, V):</strong> para dados fornecidos voluntariamente no canal de contato</li>
+        <li><strong>Cumprimento de obrigação legal (art. 7º, II):</strong> para atendimento a requisições de autoridades competentes</li>
+      </ul>
+    </div>
+    <hr class="divider">
+
+    <!-- 6 -->
+    <div class="section" id="compartilhamento">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <h2 class="section-title">Compartilhamento de Dados</h2>
+      </div>
+      <div class="alert alert-green">
+        <span class="alert-icon">🔒</span>
+        <span>O Site <strong>não vende, aluga nem comercializa</strong> dados pessoais de usuários a terceiros.</span>
+      </div>
+      <p>Os dados podem ser compartilhados apenas nas seguintes situações:</p>
+      <ul class="terms-list">
+        <li><strong>Parceiros de tecnologia:</strong> serviços de hospedagem, CDN, analytics (ex.: Google Analytics) e ferramentas de segurança — somente com os dados mínimos necessários e sob acordos de confidencialidade</li>
+        <li><strong>Redes de publicidade:</strong> identificadores anonimizados para exibição de anúncios, conforme políticas das redes parceiras (ex.: Google AdSense)</li>
+        <li><strong>Autoridades competentes:</strong> quando exigido por lei, ordem judicial ou investigação de autoridade pública devidamente fundamentada</li>
+      </ul>
+      <p>Todos os parceiros são selecionados com base em boas práticas de segurança e privacidade compatíveis com a LGPD.</p>
+    </div>
+    <hr class="divider">
+
+    <!-- 7 -->
+    <div class="section" id="cookies">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <h2 class="section-title">Cookies e Tecnologias Similares</h2>
+      </div>
+      <p>O Site utiliza cookies e tecnologias de armazenamento local (localStorage) para garantir o funcionamento e melhorar a experiência do usuário. Os tipos de cookies utilizados são:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Finalidade</th>
+            <th>Essencial?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Essenciais</strong></td>
+            <td>Funcionamento básico do Site, manutenção de preferências de filtro e sessão</td>
+            <td style="color:var(--accent); font-weight:600;">Sim</td>
+          </tr>
+          <tr>
+            <td><strong>Analytics</strong></td>
+            <td>Métricas de uso agregadas e anonimizadas para melhoria do Serviço (ex.: Google Analytics)</td>
+            <td style="color:var(--text-muted);">Não</td>
+          </tr>
+          <tr>
+            <td><strong>Publicidade</strong></td>
+            <td>Exibição de anúncios relevantes por redes parceiras</td>
+            <td style="color:var(--text-muted);">Não</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-yellow" style="margin-top:14px;">
+        <span class="alert-icon">ℹ️</span>
+        <span>O usuário pode gerenciar ou desativar cookies nas configurações do seu navegador. A desativação de cookies essenciais pode prejudicar o funcionamento correto do Site.</span>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <!-- 8 -->
+    <div class="section" id="retencao">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <h2 class="section-title">Retenção dos Dados</h2>
+      </div>
+      <p>Os dados são retidos pelo prazo mínimo necessário para cumprir as finalidades descritas nesta Política, observados os seguintes critérios:</p>
+      <ul class="terms-list">
+        <li><strong>Dados de navegação e logs:</strong> retidos por até 6 meses para fins de segurança e diagnóstico técnico</li>
+        <li><strong>Preferências do usuário:</strong> armazenadas localmente no dispositivo do usuário, podendo ser excluídas a qualquer momento via limpeza de cookies/localStorage</li>
+        <li><strong>Dados de contato:</strong> retidos pelo período necessário para resolução do atendimento e por até 5 anos para cumprimento de obrigações legais</li>
+        <li><strong>Dados de publicidade:</strong> gerenciados conforme políticas das redes parceiras (ex.: Google LLC)</li>
+      </ul>
+      <p>Após o término do prazo de retenção, os dados são eliminados ou anonimizados de forma segura.</p>
+    </div>
+    <hr class="divider">
+
+    <!-- 9 -->
+    <div class="section" id="seguranca">
+      <div class="section-header">
+        <div class="section-num">09</div>
+        <h2 class="section-title">Segurança dos Dados</h2>
+      </div>
+      <p>O Site adota medidas técnicas e organizacionais adequadas para proteger os dados pessoais contra acesso não autorizado, perda, alteração ou divulgação indevida, incluindo:</p>
+      <ul class="terms-list">
+        <li>Conexão segura via HTTPS com certificado SSL/TLS</li>
+        <li>Acesso restrito aos dados por pessoal autorizado e sob obrigação de confidencialidade</li>
+        <li>Monitoramento de acessos e tentativas de intrusão</li>
+        <li>Atualizações regulares de segurança nos sistemas do Site</li>
+      </ul>
+      <div class="alert alert-yellow">
+        <span class="alert-icon">⚠️</span>
+        <span>Nenhum sistema é 100% inviolável. Em caso de incidente de segurança que afete dados pessoais, o Site notificará os titulares e a Autoridade Nacional de Proteção de Dados (ANPD) nos prazos previstos na LGPD.</span>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <!-- 10 -->
+    <div class="section" id="direitos">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <h2 class="section-title">Seus Direitos como Titular</h2>
+      </div>
+      <p>Nos termos da LGPD (art. 18), você possui os seguintes direitos em relação aos seus dados pessoais:</p>
+
+      <div class="rights-grid">
+        <div class="right-pill">
+          <span class="ico">🔍</span>
+          <div>
+            <p class="label">Acesso</p>
+            <p class="desc">Confirmar se tratamos seus dados e obter uma cópia</p>
+          </div>
+        </div>
+        <div class="right-pill">
+          <span class="ico">✏️</span>
+          <div>
+            <p class="label">Correção</p>
+            <p class="desc">Corrigir dados incompletos, inexatos ou desatualizados</p>
+          </div>
+        </div>
+        <div class="right-pill">
+          <span class="ico">🗑️</span>
+          <div>
+            <p class="label">Eliminação</p>
+            <p class="desc">Solicitar a exclusão de dados tratados com base no seu consentimento</p>
+          </div>
+        </div>
+        <div class="right-pill">
+          <span class="ico">🚫</span>
+          <div>
+            <p class="label">Oposição</p>
+            <p class="desc">Opor-se ao tratamento realizado por legítimo interesse</p>
+          </div>
+        </div>
+        <div class="right-pill">
+          <span class="ico">📦</span>
+          <div>
+            <p class="label">Portabilidade</p>
+            <p class="desc">Receber seus dados em formato estruturado e interoperável</p>
+          </div>
+        </div>
+        <div class="right-pill">
+          <span class="ico">↩️</span>
+          <div>
+            <p class="label">Revogação</p>
+            <p class="desc">Retirar o consentimento a qualquer momento, sem prejuízo de tratamentos anteriores</p>
+          </div>
+        </div>
+        <div class="right-pill">
+          <span class="ico">ℹ️</span>
+          <div>
+            <p class="label">Informação</p>
+            <p class="desc">Ser informado sobre entidades com quem compartilhamos seus dados</p>
+          </div>
+        </div>
+        <div class="right-pill">
+          <span class="ico">⚖️</span>
+          <div>
+            <p class="label">Petição à ANPD</p>
+            <p class="desc">Peticionar à Autoridade Nacional de Proteção de Dados</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-green" style="margin-top:16px;">
+        <span class="alert-icon">✅</span>
+        <span>Para exercer qualquer um desses direitos, entre em contato pelo canal indicado na <a href="#contato" style="color:var(--accent);">Seção 14</a>. Responderemos em até <strong>15 dias úteis</strong>, conforme previsto na LGPD.</span>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <!-- 11 -->
+    <div class="section" id="menores">
+      <div class="section-header">
+        <div class="section-num">11</div>
+        <h2 class="section-title">Menores de Idade</h2>
+      </div>
+      <p>O Site não é direcionado a crianças menores de 13 anos e não coleta intencionalmente dados pessoais desse público. Menores de 13 anos devem utilizar o Site apenas com supervisão e consentimento dos responsáveis legais.</p>
+      <p>Caso um responsável legal identifique que uma criança forneceu dados pessoais ao Site sem consentimento adequado, pedimos que entre em contato imediatamente para que os dados sejam eliminados.</p>
+    </div>
+    <hr class="divider">
+
+    <!-- 12 -->
+    <div class="section" id="terceiros">
+      <div class="section-header">
+        <div class="section-num">12</div>
+        <h2 class="section-title">Links para Sites de Terceiros</h2>
+      </div>
+      <p>O Site pode conter links para canais e plataformas externas (YouTube, Disney+, SporTV, Premiere, etc.) que possuem suas próprias políticas de privacidade, independentes desta.</p>
+      <div class="alert alert-yellow">
+        <span class="alert-icon">⚠️</span>
+        <span>O <strong>Guia de Jogos</strong> não se responsabiliza pelas práticas de privacidade de sites externos. Recomendamos a leitura das políticas de privacidade de cada plataforma antes de utilizá-la.</span>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <!-- 13 -->
+    <div class="section" id="alteracoes">
+      <div class="section-header">
+        <div class="section-num">13</div>
+        <h2 class="section-title">Alterações nesta Política</h2>
+      </div>
+      <p>Esta Política de Privacidade pode ser atualizada periodicamente para refletir mudanças no Serviço, na legislação ou nas práticas de tratamento de dados. A versão atualizada será sempre publicada nesta página com a data de revisão.</p>
+      <p>Em caso de alterações relevantes que afetem significativamente os direitos dos usuários, o Site buscará informar de forma destacada. O uso continuado do Site após a publicação das alterações implica aceitação da nova Política.</p>
+    </div>
+    <hr class="divider">
+
+    <!-- 14 -->
+    <div class="section" id="contato">
+      <div class="section-header">
+        <div class="section-num">14</div>
+        <h2 class="section-title">Contato e Encarregado (DPO)</h2>
+      </div>
+      <p>Para exercer seus direitos como titular, esclarecer dúvidas, realizar solicitações de eliminação de dados ou reportar qualquer questão relacionada à privacidade, entre em contato com nosso Encarregado de Proteção de Dados:</p>
+      <div class="contact-card">
+        <p class="title">Guia de Jogos de Hoje na TV — DPO</p>
+        <p>Site: <a href="https://meuplayeronlinehd.com" target="_blank">meuplayeronlinehd.com</a></p>
+        <p style="margin-top:10px; font-size:12px; line-height:1.7;">
+          Respondemos em até <strong style="color:var(--accent);">15 dias úteis</strong> para solicitações LGPD.<br>
+          Para solicitações urgentes de eliminação de dados, indique <strong>"LGPD – ELIMINAÇÃO URGENTE"</strong> no assunto.<br><br>
+          Você também pode contatar a <strong>Autoridade Nacional de Proteção de Dados (ANPD)</strong> em: <a href="https://www.gov.br/anpd" target="_blank">gov.br/anpd</a>
+        </p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- EZOIC -->
+    <div class="section" id="ezoic-privacidade">
+      <div class="section-header">
+        <div class="section-num" style="font-size:14px; width:28px; height:28px;">✦</div>
+        <h2 class="section-title">Declaração de Privacidade — Ezoic</h2>
+      </div>
+      <p>Este site utiliza a plataforma <strong>Ezoic</strong> para otimização e monetização de anúncios. O Ezoic e seus parceiros podem coletar e utilizar dados dos visitantes conforme sua própria declaração de privacidade, incluindo informações sobre cookies e tecnologias de rastreamento empregadas.</p>
+      <p>Você pode consultar a declaração completa gerada pelo Ezoic para este site em: <a href="https://g.ezoic.net/privacy/meuplayeronlinehd.com" target="_blank" style="color:var(--accent);">g.ezoic.net/privacy/meuplayeronlinehd.com</a></p>
+      <span id="ezoic-privacy-policy-embed"></span>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p>© 2025 <strong>Guia de Jogos de Hoje na TV</strong> · Todos os direitos reservados · <a href="https://meuplayeronlinehd.com">meuplayeronlinehd.com</a></p>
+  <p style="margin-top:4px;">Política de Privacidade — Última atualização: Maio de 2025 · Em conformidade com a LGPD (Lei nº 13.709/2018)</p>
+</footer>
+
+</body>
+</html>

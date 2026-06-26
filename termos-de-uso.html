@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos de Uso — Guia de Jogos de Hoje na TV</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #0d0d0d;
+    --surface:  #181818;
+    --card:     #1c1c1c;
+    --border:   #2a2a2a;
+    --border2:  #333;
+    --accent:   #00e5a0;
+    --accent-dim: rgba(0,229,160,0.08);
+    --accent-border: rgba(0,229,160,0.22);
+    --text:     #ffffff;
+    --text-dim: #aaaaaa;
+    --text-muted: #666666;
+    --red:      #ef4444;
+    --yellow:   #f59e0b;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  /* dot idêntico ao site */
+  .logo-dot {
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .logo-text .guia { color: var(--accent); }
+  .logo-text .rest { color: var(--text); font-weight: 400; }
+  .badge {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── LAYOUT ── */
+  .wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    gap: 52px;
+    align-items: start;
+  }
+
+  /* ── SIDEBAR ── */
+  aside {
+    position: sticky;
+    top: 65px;
+    padding-top: 44px;
+  }
+  .sidebar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .nav-list { list-style: none; }
+  .nav-list li { margin-bottom: 1px; }
+  .nav-list a {
+    display: block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
+  .nav-list a:hover {
+    color: var(--text);
+    background: var(--surface);
+    border-left-color: var(--accent);
+  }
+  .info-box {
+    margin-top: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .info-box .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .info-box .val { font-size: 13px; color: var(--text-dim); font-weight: 600; }
+
+  /* ── MAIN ── */
+  main { padding-top: 44px; }
+
+  .page-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .page-title {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .page-title span { color: var(--accent); }
+  .page-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .intro-card {
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 44px;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+  .intro-card strong { color: var(--text); }
+
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 46px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .section p { color: var(--text-dim); font-size: 14px; margin-bottom: 12px; }
+  .section p:last-child { margin-bottom: 0; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin-bottom: 46px; }
+
+  /* listas */
+  .terms-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+  .terms-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .terms-list li::before {
+    content: '—';
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    flex-shrink: 0;
+  }
+
+  /* alerts */
+  .alert {
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    line-height: 1.65;
+    margin: 14px 0;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 15px; flex-shrink: 0; margin-top: 2px; }
+  .alert-red    { background: rgba(239,68,68,0.07);  border: 1px solid rgba(239,68,68,0.2);  color: #fca5a5; }
+  .alert-yellow { background: rgba(245,158,11,0.07); border: 1px solid rgba(245,158,11,0.2); color: #fcd34d; }
+  .alert-green  { background: var(--accent-dim);     border: 1px solid var(--accent-border);  color: #6ee7c7; }
+
+  /* contact */
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 14px;
+  }
+  .contact-card .title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .contact-card p { font-size: 13px; color: var(--text-muted); }
+  .contact-card a { color: var(--accent); text-decoration: none; }
+  .contact-card a:hover { text-decoration: underline; }
+
+  /* footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  footer strong { color: var(--text-dim); }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 680px) {
+    .wrapper { grid-template-columns: 1fr; gap: 0; }
+    aside { display: none; }
+    .page-title { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-dot"></div>
+    <span class="logo-text"><span class="guia">GUIA</span> <span class="rest">DE JOGOS</span></span>
+    <span class="badge">Termos de Uso</span>
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <aside>
+    <p class="sidebar-label">Índice</p>
+    <ul class="nav-list">
+      <li><a href="#aceitacao">1. Aceitação</a></li>
+      <li><a href="#servico">2. Sobre o Serviço</a></li>
+      <li><a href="#natureza">3. Natureza do Conteúdo</a></li>
+      <li><a href="#uso">4. Uso Permitido</a></li>
+      <li><a href="#proibicoes">5. Proibições</a></li>
+      <li><a href="#propriedade">6. Prop. Intelectual</a></li>
+      <li><a href="#responsabilidade">7. Responsabilidade</a></li>
+      <li><a href="#privacidade">8. Privacidade / LGPD</a></li>
+      <li><a href="#disponibilidade">9. Disponibilidade</a></li>
+      <li><a href="#anuncios">10. Publicidade</a></li>
+      <li><a href="#menores">11. Menores de Idade</a></li>
+      <li><a href="#alteracoes">12. Alterações</a></li>
+      <li><a href="#legislacao">13. Legislação</a></li>
+      <li><a href="#contato">14. Contato</a></li>
+    </ul>
+    <div class="info-box">
+      <p class="lbl">Última atualização</p>
+      <p class="val">Maio de 2025</p>
+    </div>
+    <div class="info-box" style="margin-top:10px;">
+      <p class="lbl">Site</p>
+      <p class="val" style="font-size:11px;">meuplayeronlinehd.com</p>
+    </div>
+  </aside>
+
+  <main>
+    <p class="page-eyebrow">meuplayeronlinehd.com</p>
+    <h1 class="page-title"><span>Termos</span> de Uso</h1>
+    <p class="page-sub">Guia de Jogos de Futebol de Hoje na TV e Streaming</p>
+
+    <div class="intro-card">
+      <strong>Leia com atenção antes de utilizar o site.</strong> Ao acessar ou utilizar qualquer recurso do <strong>Guia de Jogos de Hoje na TV</strong>, disponível em <strong>meuplayeronlinehd.com</strong>, você declara ter lido, compreendido e concordado integralmente com estes Termos de Uso. Caso não concorde, pedimos que não utilize o Serviço.
+    </div>
+
+    <div class="section" id="aceitacao">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <h2 class="section-title">Aceitação dos Termos</h2>
+      </div>
+      <p>O simples acesso ao Site implica aceitação plena e irrevogável destes Termos de Uso e da nossa Política de Privacidade, independentemente do dispositivo utilizado (computador, smartphone, tablet ou smart TV).</p>
+      <p>Se você acessa o Site em nome de uma empresa ou organização, declara ter autoridade para vincular tal entidade a estes Termos.</p>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="servico">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <h2 class="section-title">Sobre o Serviço</h2>
+      </div>
+      <p>O <strong>Guia de Jogos de Hoje na TV</strong> é um serviço editorial e informativo que centraliza e organiza informações sobre jogos de futebol ao vivo, indicando em quais canais de TV aberta, TV fechada e plataformas de streaming as partidas podem ser assistidas.</p>
+      <p>Entre os recursos disponíveis:</p>
+      <ul class="terms-list">
+        <li>Grade diária de partidas com horários no fuso de Brasília (BRT)</li>
+        <li>Filtro por canal: Disney+, SporTV, Xsports, Premiere, SportyNet, YouTube e outros</li>
+        <li>Indicador de jogos ao vivo em tempo real</li>
+        <li>Busca por jogo, campeonato ou canal</li>
+        <li>Cobertura de competições nacionais e internacionais</li>
+      </ul>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="natureza">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2 class="section-title">Natureza Informativa do Conteúdo</h2>
+      </div>
+      <div class="alert alert-yellow">
+        <span class="alert-icon">📋</span>
+        <span>O Site tem caráter estritamente <strong>informativo e editorial</strong>. Não transmite, hospeda, armazena nem distribui sinais de áudio ou vídeo de jogos ou eventos esportivos.</span>
+      </div>
+      <p>As informações sobre horários, canais e transmissões são coletadas de fontes públicas e podem sofrer alterações por decisão das emissoras, organizadores de campeonatos ou detentores de direitos. O Site não possui vínculo oficial com emissoras, clubes, confederações ou plataformas mencionados.</p>
+      <p>Recomendamos sempre confirmar as informações diretamente nos canais e plataformas oficiais antes de cada partida.</p>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="uso">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <h2 class="section-title">Uso Permitido</h2>
+      </div>
+      <p>O Serviço é disponibilizado para uso pessoal, não comercial, em conformidade com a legislação brasileira. Ao utilizar o Site, você se compromete a:</p>
+      <ul class="terms-list">
+        <li>Utilizar as informações apenas para fins lícitos e pessoais</li>
+        <li>Não reproduzir ou redistribuir o conteúdo editorial sem autorização expressa</li>
+        <li>Respeitar os direitos de propriedade intelectual do Site e de terceiros</li>
+        <li>Não usar sistemas automatizados, robôs ou scrapers para coleta massiva de dados</li>
+        <li>Manter a integridade e segurança dos sistemas durante o uso</li>
+      </ul>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="proibicoes">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <h2 class="section-title">Usos Proibidos</h2>
+      </div>
+      <div class="alert alert-red">
+        <span class="alert-icon">⚠️</span>
+        <span>É expressamente proibido qualquer uso que viole leis, direitos de terceiros ou comprometa a integridade do Serviço.</span>
+      </div>
+      <ul class="terms-list">
+        <li>Copiar ou redistribuir a grade de programação de forma sistemática sem autorização</li>
+        <li>Explorar comercialmente o conteúdo do Site sem licença expressa do titular</li>
+        <li>Realizar engenharia reversa ou scraping massivo de APIs e dados do Site</li>
+        <li>Sobrecarregar servidores por requisições automatizadas excessivas ou ataques DDoS</li>
+        <li>Veicular informações falsas ou enganosas atribuídas ao Site</li>
+        <li>Usar o Site para praticar fraude, phishing ou qualquer atividade ilícita</li>
+        <li>Tentar obter acesso não autorizado a sistemas ou áreas restritas</li>
+      </ul>
+      <p>O descumprimento pode resultar em bloqueio de acesso e responsabilização civil e criminal nos termos da lei.</p>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="propriedade">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <h2 class="section-title">Propriedade Intelectual</h2>
+      </div>
+      <p>Todo o conteúdo editorial produzido pelo Site — textos, organização da grade, layout, identidade visual, logotipo, código-fonte e demais elementos — é de titularidade do <strong>Guia de Jogos</strong> e protegido pela Lei de Direitos Autorais (Lei nº 9.610/1998).</p>
+      <p>Os nomes de campeonatos, clubes, emissoras e plataformas mencionados são marcas de seus respectivos titulares. Sua menção tem finalidade exclusivamente informativa, sem implicar vínculo, patrocínio ou endosso oficial.</p>
+      <div class="alert alert-green">
+        <span class="alert-icon">✅</span>
+        <span>É permitido compartilhar links do Site em redes sociais e aplicativos de mensagem, desde que sem modificações e com atribuição correta à fonte.</span>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="responsabilidade">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <h2 class="section-title">Limitação de Responsabilidade</h2>
+      </div>
+      <p>O Site é fornecido <strong>"como está"</strong> e <strong>"conforme disponível"</strong>, sem garantias de completude ou precisão absoluta das informações de programação esportiva.</p>
+      <ul class="terms-list">
+        <li>Alterações de horário, cancelamento ou mudança de canal decididos pelas emissoras ou organizadores</li>
+        <li>Imprecisões em informações obtidas de fontes públicas de terceiros</li>
+        <li>Indisponibilidade temporária por falhas técnicas, manutenção ou força maior</li>
+        <li>Conteúdo de sites externos acessados por links presentes no Site</li>
+        <li>Danos indiretos ou consequenciais decorrentes do uso das informações</li>
+      </ul>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="privacidade">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <h2 class="section-title">Privacidade e Dados — LGPD</h2>
+      </div>
+      <p>O Site trata dados pessoais em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018)</strong>. Dados coletados durante o uso:</p>
+      <ul class="terms-list">
+        <li><strong>Navegação:</strong> IP, dispositivo, navegador e páginas visitadas — para análise de desempenho e segurança</li>
+        <li><strong>Cookies:</strong> preferências do usuário como filtros de canal ou campeonato selecionados</li>
+        <li><strong>Analytics:</strong> dados agregados e anonimizados para melhoria do Serviço</li>
+      </ul>
+      <div class="alert alert-green">
+        <span class="alert-icon">🔒</span>
+        <span>O Site não comercializa dados pessoais. Informações são compartilhadas apenas com parceiros tecnológicos estritamente necessários ao funcionamento do Serviço.</span>
+      </div>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="disponibilidade">
+      <div class="section-header">
+        <div class="section-num">09</div>
+        <h2 class="section-title">Disponibilidade do Serviço</h2>
+      </div>
+      <p>O Site empreenderá esforços razoáveis para manter o Serviço disponível, especialmente em dias de grande movimentação esportiva. No entanto, não garante disponibilidade ininterrupta. O Site reserva-se o direito de:</p>
+      <ul class="terms-list">
+        <li>Realizar manutenções programadas ou emergenciais</li>
+        <li>Modificar, suspender ou encerrar funcionalidades específicas</li>
+        <li>Atualizar layout, estrutura de dados ou fontes de informação</li>
+        <li>Bloquear acesso de usuários ou IPs que violem estes Termos</li>
+      </ul>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="anuncios">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <h2 class="section-title">Publicidade e Anúncios</h2>
+      </div>
+      <p>O Site exibe anúncios publicitários de redes parceiras como forma de manter o Serviço gratuito. Os anúncios podem utilizar cookies para exibição personalizada, conforme as políticas dos respectivos anunciantes.</p>
+      <p>O Site não se responsabiliza pelo conteúdo promovido nos anúncios. Anúncios inadequados podem ser reportados pelo canal de contato. O uso de bloqueadores de anúncios pode impactar o funcionamento de alguns recursos.</p>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="menores">
+      <div class="section-header">
+        <div class="section-num">11</div>
+        <h2 class="section-title">Menores de Idade</h2>
+      </div>
+      <p>O conteúdo do Site é de natureza informativa e esportiva, adequado ao público geral. Menores de 13 anos devem utilizar o Serviço somente com supervisão e consentimento dos responsáveis legais.</p>
+      <p>O Site não coleta intencionalmente dados de crianças menores de 13 anos. Caso um responsável identifique tal situação, pedimos que entre em contato para remoção imediata dos dados.</p>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="alteracoes">
+      <div class="section-header">
+        <div class="section-num">12</div>
+        <h2 class="section-title">Alterações nos Termos</h2>
+      </div>
+      <p>O <strong>Guia de Jogos</strong> reserva-se o direito de alterar estes Termos a qualquer momento, publicando a versão atualizada nesta página com a respectiva data de revisão. O uso continuado do Site após qualquer alteração constitui aceitação dos novos termos.</p>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="legislacao">
+      <div class="section-header">
+        <div class="section-num">13</div>
+        <h2 class="section-title">Legislação e Foro</h2>
+      </div>
+      <p>Estes Termos são regidos pelas leis da <strong>República Federativa do Brasil</strong>, em especial:</p>
+      <ul class="terms-list">
+        <li>Lei nº 12.965/2014 — Marco Civil da Internet</li>
+        <li>Lei nº 13.709/2018 — Lei Geral de Proteção de Dados (LGPD)</li>
+        <li>Lei nº 9.610/1998 — Lei de Direitos Autorais</li>
+        <li>Lei nº 8.078/1990 — Código de Defesa do Consumidor</li>
+      </ul>
+      <p>Fica eleito o foro do domicílio do operador do Site para dirimir quaisquer controvérsias, renunciando as partes a qualquer outro.</p>
+    </div>
+    <hr class="divider">
+
+    <div class="section" id="contato">
+      <div class="section-header">
+        <div class="section-num">14</div>
+        <h2 class="section-title">Contato</h2>
+      </div>
+      <p>Para dúvidas, solicitações de correção de informações, privacidade (LGPD) ou outros assuntos relacionados a estes Termos:</p>
+      <div class="contact-card">
+        <p class="title">Guia de Jogos de Hoje na TV</p>
+        <p>Site: <a href="https://meuplayeronlinehd.com" target="_blank">meuplayeronlinehd.com</a></p>
+        <p style="margin-top:8px; font-size:12px;">Respondemos em até 72 horas úteis. Para remoção urgente de dados (LGPD), indique <strong>"LGPD – REMOÇÃO URGENTE"</strong> no assunto.</p>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p>© 2025 <strong>Guia de Jogos de Hoje na TV</strong> · Todos os direitos reservados · <a href="https://meuplayeronlinehd.com">meuplayeronlinehd.com</a></p>
+  <p style="margin-top:4px;">Última atualização: Maio de 2025</p>
+</footer>
+
+</body>
+</html>
